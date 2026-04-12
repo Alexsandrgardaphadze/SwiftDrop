@@ -361,3 +361,36 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Build results
+bin/
+obj/
+*.user
+
+# Visual Studio
+.vs/
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+*.nupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Storage (don't commit uploaded files)
+SwiftDropStorage/
+C:/SwiftDropStorage/
+
+# Environment / secrets
+appsettings.Development.json
+*.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

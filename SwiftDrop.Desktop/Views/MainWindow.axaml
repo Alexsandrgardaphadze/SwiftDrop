@@ -1,20 +1,88 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:SwiftDrop.Desktop.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="SwiftDrop.Desktop.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="SwiftDrop.Desktop">
+        x:Class="SwiftDrop.Desktop.Views.MainWindow"
+        Title="SwiftDrop" Width="500" Height="750"
+        Background="#1e1e2e">
+	<StackPanel Margin="30" Spacing="12">
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+		<!-- Header -->
+		<TextBlock Text="⚡ SwiftDrop" FontSize="28" FontWeight="Bold"
+                   Foreground="#cba6f7" HorizontalAlignment="Center"/>
+		<TextBlock Text="{Binding StatusText}" FontSize="13"
+                   Foreground="#a6e3a1" HorizontalAlignment="Center"/>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+		<!-- Auth Panel -->
+		<StackPanel Spacing="8" IsVisible="{Binding !IsLoggedIn}">
+			<TextBlock Text="Username (register only)" Foreground="#cdd6f4"/>
+			<TextBox Text="{Binding Username}" PlaceholderText="Username"
+                     Background="#313244" Foreground="#cdd6f4" CornerRadius="6"/>
+			<TextBlock Text="Email" Foreground="#cdd6f4"/>
+			<TextBox Text="{Binding Email}" PlaceholderText="Email"
+                     Background="#313244" Foreground="#cdd6f4" CornerRadius="6"/>
+			<TextBlock Text="Password" Foreground="#cdd6f4"/>
+			<TextBox Text="{Binding Password}" PlaceholderText="Password"
+                     PasswordChar="*" Background="#313244" Foreground="#cdd6f4" CornerRadius="6"/>
+			<Button Content="Register" Command="{Binding RegisterCommand}"
+                    Background="#cba6f7" Foreground="#1e1e2e" CornerRadius="6"
+                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+			<Button Content="Login" Command="{Binding LoginCommand}"
+                    Background="#89b4fa" Foreground="#1e1e2e" CornerRadius="6"
+                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+		</StackPanel>
 
+		<!-- Chat + File Panel -->
+		<StackPanel Spacing="8" IsVisible="{Binding IsLoggedIn}">
+
+			<!-- Receiver Selection -->
+			<TextBlock Text="Send to:" Foreground="#cdd6f4" FontSize="12"/>
+			<Grid ColumnDefinitions="*,Auto">
+				<ComboBox Grid.Column="0" ItemsSource="{Binding AvailableUsers}"
+                          SelectedItem="{Binding SelectedReceiver}"
+                          Background="#313244" Foreground="#cdd6f4" CornerRadius="6">
+					<ComboBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Username}" Foreground="#cdd6f4"/>
+						</DataTemplate>
+					</ComboBox.ItemTemplate>
+				</ComboBox>
+				<Button Grid.Column="1" Content="🔄" Command="{Binding RefreshUsersCommand}"
+                        Background="#45475a" Foreground="#cdd6f4" CornerRadius="6"
+                        Margin="4,0,0,0" ToolTip.Tip="Refresh user list"/>
+			</Grid>
+			<TextBlock Text="{Binding ReceiverLabel}" Foreground="#fab387" FontSize="11"/>
+
+			<!-- Message List -->
+			<Border Background="#313244" CornerRadius="8" Height="320" Padding="8">
+				<ScrollViewer>
+					<ItemsControl ItemsSource="{Binding Messages}">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding}" Foreground="#cdd6f4"
+                                           TextWrapping="Wrap" Margin="0,2"/>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</Border>
+
+			<!-- Message Input -->
+			<TextBox Text="{Binding MessageInput}" PlaceholderText="Type a message or /download [id]..."
+                     Background="#313244" Foreground="#cdd6f4" CornerRadius="6"/>
+			<Button Content="Send Message" Command="{Binding SendCommand}"
+                    Background="#a6e3a1" Foreground="#1e1e2e" CornerRadius="6"
+                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+
+			<!-- File Transfer -->
+			<Button Content="📁 Send File" Command="{Binding SendFileCommand}"
+                    Background="#f38ba8" Foreground="#1e1e2e" CornerRadius="6"
+                    HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+			<ProgressBar Value="{Binding TransferProgress}" Minimum="0" Maximum="100"
+                         Height="12" CornerRadius="6" Background="#313244" Foreground="#a6e3a1"/>
+			<TextBlock Text="{Binding TransferStatus}" Foreground="#fab387"
+                       FontSize="12" HorizontalAlignment="Center"/>
+		</StackPanel>
+
+	</StackPanel>
 </Window>
