@@ -1,0 +1,29 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="SwiftDrop.Desktop.Views.MediaViewerWindow"
+        Title="SwiftDrop — Media Viewer"
+        Width="900" Height="700"
+        Background="#0d0d14"
+        WindowStartupLocation="CenterScreen">
+	<Grid RowDefinitions="*,Auto">
+		<ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto">
+			<Image Name="PreviewImage"
+                   Stretch="Uniform"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="20"/>
+		</ScrollViewer>
+		<Border Grid.Row="1" Background="#12121f" Padding="12,8">
+			<Grid ColumnDefinitions="*,Auto">
+				<TextBlock Name="FileNameText"
+                           Foreground="#8888aa" FontSize="12"
+                           VerticalAlignment="Center"/>
+				<Button Grid.Column="1" Content="Close"
+                        Background="#7c5cbf" Foreground="#e8e8f0"
+                        CornerRadius="6" Padding="16,6"
+                        Click="OnCloseClick"/>
+			</Grid>
+		</Border>
+	</Grid>
+</Window>

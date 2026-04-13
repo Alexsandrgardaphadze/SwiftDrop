@@ -1,15 +1,38 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="SwiftDrop.Desktop.App"
-             xmlns:local="using:SwiftDrop.Desktop"
-             RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
-
-    <Application.DataTemplates>
-        <local:ViewLocator/>
-    </Application.DataTemplates>
-  
-    <Application.Styles>
-        <FluentTheme />
-    </Application.Styles>
+             RequestedThemeVariant="Dark">
+	<Application.Styles>
+		<FluentTheme/>
+		<StyleInclude Source="avares://Avalonia.Themes.Fluent/FluentTheme.xaml"/>
+	</Application.Styles>
+	<Application.Resources>
+		<ResourceDictionary>
+			<Color x:Key="BgDarkest">#0d0d14</Color>
+			<Color x:Key="BgMid">#12121f</Color>
+			<Color x:Key="BgCard">#1a1a2e</Color>
+			<Color x:Key="Surface">#1e1e35</Color>
+			<Color x:Key="SurfaceRaised">#252540</Color>
+			<Color x:Key="AccentPurple">#7c5cbf</Color>
+			<Color x:Key="AccentBlue">#4a90d9</Color>
+			<Color x:Key="AccentCyan">#00b4d8</Color>
+			<Color x:Key="GreenOnline">#43b581</Color>
+			<Color x:Key="TextPrimary">#e8e8f0</Color>
+			<Color x:Key="TextSecondary">#8888aa</Color>
+			<Color x:Key="TextMuted">#555570</Color>
+			<Color x:Key="Border">#2a2a45</Color>
+			<SolidColorBrush x:Key="BgDarkestBrush" Color="#0d0d14"/>
+			<SolidColorBrush x:Key="BgMidBrush" Color="#12121f"/>
+			<SolidColorBrush x:Key="BgCardBrush" Color="#1a1a2e"/>
+			<SolidColorBrush x:Key="SurfaceBrush" Color="#1e1e35"/>
+			<SolidColorBrush x:Key="SurfaceRaisedBrush" Color="#252540"/>
+			<SolidColorBrush x:Key="AccentPurpleBrush" Color="#7c5cbf"/>
+			<SolidColorBrush x:Key="AccentBlueBrush" Color="#4a90d9"/>
+			<SolidColorBrush x:Key="AccentCyanBrush" Color="#00b4d8"/>
+			<SolidColorBrush x:Key="TextPrimaryBrush" Color="#e8e8f0"/>
+			<SolidColorBrush x:Key="TextSecondaryBrush" Color="#8888aa"/>
+			<SolidColorBrush x:Key="TextMutedBrush" Color="#555570"/>
+			<SolidColorBrush x:Key="BorderBrush" Color="#2a2a45"/>
+		</ResourceDictionary>
+	</Application.Resources>
 </Application>

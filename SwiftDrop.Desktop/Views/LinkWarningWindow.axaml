@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="SwiftDrop.Desktop.Views.LinkWarningWindow"
+        Title="Opening External Link"
+        Width="420" Height="200"
+        Background="#12121f"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+	<StackPanel Margin="28" Spacing="16">
+		<TextBlock Text="⚠ You are leaving SwiftDrop"
+                   FontSize="16" FontWeight="Bold"
+                   Foreground="#e8e8f0"/>
+		<TextBlock Name="UrlText" TextWrapping="Wrap"
+                   Foreground="#8888aa" FontSize="12"/>
+		<TextBlock Text="This link will open in your browser. Make sure you trust it."
+                   Foreground="#555570" FontSize="11" TextWrapping="Wrap"/>
+		<StackPanel Orientation="Horizontal" Spacing="10"
+                    HorizontalAlignment="Right">
+			<Button Content="Cancel" Click="OnCancel"
+                    Background="#252540" Foreground="#e8e8f0"
+                    CornerRadius="6" Padding="14,7"/>
+			<Button Content="Open Link" Name="OpenButton"
+                    Background="#7c5cbf" Foreground="#e8e8f0"
+                    CornerRadius="6" Padding="14,7"
+                    Click="OnOpen"/>
+		</StackPanel>
+	</StackPanel>
+</Window>
